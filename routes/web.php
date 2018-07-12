@@ -22,3 +22,7 @@ Route::post('/undefined',           'UndefinedController@store');
 Route::delete('/undefined/{task}',  'UndefinedController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

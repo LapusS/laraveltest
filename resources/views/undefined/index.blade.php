@@ -19,7 +19,7 @@
                 <label for="task" class="col-sm-3 control-label">Задача</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control">
+                    <input type="text" name="name" id="task-name" class="form-control" placeholder="Задача">
                 </div>
             </div>
 
@@ -33,6 +33,46 @@
             </div>
         </form>
     </div>
+    <!-- Текущие задачи -->
+    @if (count($tasks) > 0)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Текущая задача
+            </div>
 
-    <!-- TODO: Текущие задачи -->
+            <div class="panel-body">
+                <table class="table table-striped task-table">
+
+                    <!-- Заголовок таблицы -->
+                    <thead>
+                    <th>Task</th>
+                    <th>&nbsp;</th>
+                    </thead>
+
+                    <!-- Тело таблицы -->
+                    <tbody>
+                    @foreach ($tasks as $task)
+                        <tr>
+                            <!-- Имя задачи -->
+                            <td class="table-text">
+                                <div>{{ $task->name }}</div>
+                            </td>
+
+                            <td>
+                                <form action="{{ url('undefined/'. $task->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                        <i class="fa fa-btn fa-trash"></i>Удалить
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
 @endsection

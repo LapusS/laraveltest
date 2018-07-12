@@ -11,7 +11,7 @@ class Undefined extends Model
      *
      * @var string
      */
-    protected $table = 'undefined';
+    protected $table = 'undefineds';
     /**
      * Массово присваиваем атрибуты
      *
